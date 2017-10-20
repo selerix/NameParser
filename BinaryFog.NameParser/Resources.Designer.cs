@@ -67,7 +67,7 @@ namespace BinaryFog.NameParser {
         ///llc
         ///limited
         ///inc
-        ///incorperated
+        ///incorporated
         ///corp
         ///corporation.
         /// </summary>
@@ -150,11 +150,28 @@ namespace BinaryFog.NameParser {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to accounts receivable
-        ///senator
-        ///doctor
-        ///president
-        ///vice president.
+        ///   Looks up a localized string similar to accounts payable
+        ///accounts receivable
+        ///assistant manager
+        ///chairman
+        ///chief accounting officer
+        ///chief administrative officer
+        ///chief communications officer
+        ///chief creative officer
+        ///chief data officer
+        ///chief diversity officer
+        ///chief engineering officer
+        ///chief executive officer
+        ///chief financial officer
+        ///chief information officer
+        ///chief legal officer
+        ///chief marketing officer
+        ///chief networking officer
+        ///chief operations officer
+        ///chief quality officer
+        ///chief research officer
+        ///chief risk officer
+        ///chief science office [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string JobTitles {
             get {
@@ -326,39 +343,110 @@ namespace BinaryFog.NameParser {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to bchd
+        ///   Looks up a localized string similar to (ret)
+        ///(ret.)
+        ///a de c
+        ///adc
+        ///adcp
+        ///adv
+        ///afm
+        ///am
+        ///aoe
+        ///ara
+        ///arrc
+        ///ba
+        ///bchd
         ///bd
         ///bds
         ///bdsc
+        ///bem
         ///bohdsc
+        ///bt
+        ///btss
+        ///cb
+        ///cbe
+        ///cc
+        ///cd
+        ///cfd
+        ///cgm
+        ///cj
+        ///cja
+        ///cjc
+        ///cm
+        ///cmm
+        ///com
+        ///cp
+        ///cq
+        ///cr
+        ///csm
+        ///csyp
+        ///cv
+        ///cvo
+        ///dbci
+        ///dbe
         ///dc
         ///dcm
         ///dd
         ///dds
         ///ddsc
+        ///dfc
+        ///dfm
+        ///dl
         ///dmd
         ///dmsc
         ///do
         ///dpm
         ///dpt
+        ///dsm
         ///dvm
         ///esq
         ///fcps
+        ///frcp
+        ///frgs
+        ///frs
+        ///frsc
+        ///gbe
+        ///gm
+        ///goq
+        ///iso
+        ///j
+        ///ja
         ///jd
+        ///jp
         ///kbe
+        ///lvo
+        ///ma
+        ///mb
+        ///mbe
+        ///mc
         ///md
         ///mds
         ///mdsc
+        ///mha
         ///mhl
+        ///mla
+        ///mm
+        ///mmm
+        ///mmp
         ///mmsc
+        ///mmv
+        ///mna
+        ///mom
+        ///mp
+        ///mpp
+        ///mrsc
         ///ms
         ///msc
         ///mscds
         ///msd
+        ///msm
+        ///msp
+        ///mvo
+        ///obc
+        ///obe
+        ///oc
         ///od
-        ///phd
-        ///scd
-        ///vmd.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PostNominals {
             get {
@@ -387,7 +475,8 @@ namespace BinaryFog.NameParser {
         ///xviii
         ///xix
         ///jr
-        ///sr.
+        ///sr
+        ///esq.
         /// </summary>
         internal static string Suffixes {
             get {
@@ -396,12 +485,26 @@ namespace BinaryFog.NameParser {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mr
-        ///ms
-        ///mrs
+        ///   Looks up a localized string similar to dame
         ///dr
+        ///madam
+        ///madame
+        ///miss
+        ///missus
+        ///mistress
+        ///mr
+        ///mrs
+        ///ms
+        ///mx
+        ///prof
         ///sir
-        ///madam.
+        ///master
+        ///mz
+        ///lord
+        ///lady
+        ///hon
+        ///honorable
+        ///right hon.
         /// </summary>
         internal static string Titles {
             get {

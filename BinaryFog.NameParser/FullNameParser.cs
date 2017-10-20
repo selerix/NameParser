@@ -24,9 +24,52 @@ namespace BinaryFog.NameParser {
 
 		string _fullName;
 		private static readonly Type PatternType = typeof(IPattern);
-		private static readonly IEnumerable<IPattern> PatternsMap =
-			AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => p.IsClass && PatternType.IsAssignableFrom(p))
-			.Select(t => t.GetConstructor(Type.EmptyTypes)?.Invoke(null)).OfType<IPattern>().Where(o => o != null);
+        private static readonly IEnumerable<IPattern> PatternsMap =
+            //AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => p.IsClass && PatternType.IsAssignableFrom(p))
+            //.Select(t => t.GetConstructor(Type.EmptyTypes)?.Invoke(null)).OfType<IPattern>().Where(o => o != null);
+            new IPattern[]
+            {
+                new Patterns.CompanyPattern(),
+                new Patterns.DoubleInitialsFirstLastPattern(),
+                new Patterns.DoubleWordFirstLastPattern(),
+                new Patterns.DoubleWordHyphenatedFirstLastPattern(),
+                new Patterns.FirstDoubleWordHyphenatedLastPattern(),
+                new Patterns.FirstDoubleWordLastPattern(),
+                new Patterns.FirstInitialHyphenatedLastPattern(),
+                new Patterns.FirstInitialHyphenatedLastSuffixPattern(),
+                new Patterns.FirstInitialLastPattern(),
+                new Patterns.FirstInitialLastSuffixPattern(),
+                new Patterns.FirstInitialPrefixedLastPattern(),
+                new Patterns.FirstInitialPrefixedLastSuffixPattern(),
+                new Patterns.FirstIrishLastPattern(),
+                new Patterns.FirstLastPattern(),
+                new Patterns.FirstLastSuffixPattern(),
+                new Patterns.FirstMiddleHyphenatedLastPattern(),
+                new Patterns.FirstMiddleHyphenatedLastSuffixPattern(),
+                new Patterns.FirstMiddleLastSuffixPattern(),
+                new Patterns.FirstMiddlePrefixedLastPattern(),
+                new Patterns.FirstMiddlePrefixedLastSuffixPattern(),
+                new Patterns.FirstNameJobTitlePattern(),
+                new Patterns.FirstNameOnlyPattern(),
+                new Patterns.FirstNickInitialLastPattern(),
+                new Patterns.FirstNickLastPattern(),
+                new Patterns.FirstPrefixedLastPattern(),
+                new Patterns.LastNameCommaFirstNameNickNameInitialPattern(),
+                new Patterns.LastNameCommaFirstNamePattern(),
+                new Patterns.TitleDoubleWordHyphenatedFirstLastPattern(),
+                new Patterns.TitleFirstDoubleMiddlePrefixedLastSuffixPattern(),
+                new Patterns.TitleFirstDoubleWordHyphenatedLastPattern(),
+                new Patterns.TitleFirstDoubleWordLastPattern(),
+                new Patterns.TitleFirstInitialLastPattern(),
+                new Patterns.TitleFirstIrishLastPattern(),
+                new Patterns.TitleFirstLastPattern(),
+                new Patterns.TitleFirstLastSuffixPattern(),
+                new Patterns.TitleFirstMiddlePrefixedLastSuffixPattern(),
+                new Patterns.TitleFirstNameJobTitlePattern(),
+                new Patterns.TitleFirstNickLastPattern(),
+                new Patterns.TitleFirstNickLastSuffixPattern(),
+                new Patterns.TitleFirstPrefixedLastPattern()
+            };
 
 		public string FirstName { get; private set; }
 		public string MiddleName { get; private set; }
