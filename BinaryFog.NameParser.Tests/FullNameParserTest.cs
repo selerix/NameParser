@@ -18,41 +18,75 @@ namespace BinaryFog.NameParser.Tests {
 		[ExcludeFromCodeCoverage]
 		public TestContext TestContext { get; set; }
 
-		#region Additional test attributes
-		// 
-		//You can use the following additional attributes as you write your tests:
-		//
-		//Use ClassInitialize to run code before running the first test in the class
-		//[ClassInitialize()]
-		//public static void MyClassInitialize(TestContext testContext)
-		//{
-		//}
-		//
-		//Use ClassCleanup to run code after all tests in a class have run
-		//[ClassCleanup()]
-		//public static void MyClassCleanup()
-		//{
-		//}
-		//
-		//Use TestInitialize to run code before running each test
-		//[TestInitialize()]
-		//public void MyTestInitialize()
-		//{
-		//}
-		//
-		//Use TestCleanup to run code after each test has run
-		//[TestCleanup()]
-		//public void MyTestCleanup()
-		//{
-		//}
-		//
-		#endregion
+        #region Additional test attributes
+        // 
+        //You can use the following additional attributes as you write your tests:
+        //
+        //Use ClassInitialize to run code before running the first test in the class
+        //[ClassInitialize()]
+        //public static void MyClassInitialize(TestContext testContext)
+        //{
+        //}
+        //
+        //Use ClassCleanup to run code after all tests in a class have run
+        //[ClassCleanup()]
+        //public static void MyClassCleanup()
+        //{
+        //}
+        //
+        //Use TestInitialize to run code before running each test
+        //[TestInitialize()]
+        //public void MyTestInitialize()
+        //{
+        //}
+        //
+        //Use TestCleanup to run code after each test has run
+        //[TestCleanup()]
+        //public void MyTestCleanup()
+        //{
+        //}
+        //
+        #endregion
 
 
-		/// <summary>
-		///A test for Parse
-		///</summary>
-		[TestMethod]
+        /// <summary>
+        ///A test for Parse
+        ///</summary>
+        [TestMethod]
+        public void Parse_MaryCatherineWatts()
+        {
+            var fullName = "Mary Catherine Watts";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.AreEqual("Mary", target.FirstName);
+            Assert.AreEqual("Catherine", target.MiddleName);
+            Assert.AreEqual("Watts", target.LastName);
+            Assert.AreEqual("Mary Catherine Watts", target.DisplayName);
+            Assert.IsNull(target.Title);
+        }
+
+        /// <summary>
+        ///A test for Parse
+        ///</summary>
+        [TestMethod]
+        public void Parse_WattsCommaMaryCatherine()
+        {
+            var fullName = "Watts, Mary Catherine";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.AreEqual("Mary", target.FirstName);
+            Assert.AreEqual("Catherine", target.MiddleName);
+            Assert.AreEqual("Watts", target.LastName);
+            Assert.AreEqual("Mary Catherine Watts", target.DisplayName);
+            Assert.IsNull(target.Title);
+        }
+
+        /// <summary>
+        ///A test for Parse
+        ///</summary>
+        [TestMethod]
 		public void Parse_JackJohnson() {
 			var fullName = "Jack Johnson";
 			var target = new FullNameParser(fullName);
@@ -136,20 +170,6 @@ namespace BinaryFog.NameParser.Tests {
 			Assert.AreEqual("Jack Johnson", target.DisplayName);
 			
 		}
-
-		[TestMethod]
-		public void Parse_AffiliatedForkliftServices() {
-			var fullName = "AFFILIATED FORKLIFT SERVICES";
-			var target = new FullNameParser(fullName);
-			target.Parse();
-
-			Assert.AreEqual("AFFILIATED FORKLIFT SERVICES", target.DisplayName);
-			Assert.IsNull(target.FirstName);
-			Assert.IsNull(target.LastName);
-			Assert.IsNull(target.Title);
-			Assert.IsNull(target.NickName);
-		}
-
 
 		[TestMethod]
 		public void Parse_AkContractingSCOPEKenoraSCOPELtd() {

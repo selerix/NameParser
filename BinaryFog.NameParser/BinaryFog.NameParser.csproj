@@ -75,8 +75,10 @@
     <Compile Include="Patterns\FirstInitialPrefixedLastPattern.cs" />
     <Compile Include="Patterns\FirstInitialPrefixedLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstMiddleHyphenatedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\FirstMiddleLastPattern.cs" />
     <Compile Include="Patterns\FirstMiddleLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstMiddlePrefixedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\LastNameCommaFirstNameMiddleNamePattern.cs" />
     <Compile Include="Patterns\TitleFirstDoubleWordHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\TitleDoubleWordHyphenatedFirstLastPattern.cs" />
     <Compile Include="Patterns\DoubleWordHyphenatedFirstLastPattern.cs" />

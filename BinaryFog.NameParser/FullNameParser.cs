@@ -43,6 +43,7 @@ namespace BinaryFog.NameParser {
                 new Patterns.FirstInitialPrefixedLastSuffixPattern(),
                 new Patterns.FirstIrishLastPattern(),
                 new Patterns.FirstLastPattern(),
+                new Patterns.FirstMiddleLastPattern(),
                 new Patterns.FirstLastSuffixPattern(),
                 new Patterns.FirstMiddleHyphenatedLastPattern(),
                 new Patterns.FirstMiddleHyphenatedLastSuffixPattern(),
@@ -55,7 +56,6 @@ namespace BinaryFog.NameParser {
                 new Patterns.FirstNickLastPattern(),
                 new Patterns.FirstPrefixedLastPattern(),
                 new Patterns.LastNameCommaFirstNameNickNameInitialPattern(),
-                new Patterns.LastNameCommaFirstNamePattern(),
                 new Patterns.TitleDoubleWordHyphenatedFirstLastPattern(),
                 new Patterns.TitleFirstDoubleMiddlePrefixedLastSuffixPattern(),
                 new Patterns.TitleFirstDoubleWordHyphenatedLastPattern(),
@@ -68,7 +68,9 @@ namespace BinaryFog.NameParser {
                 new Patterns.TitleFirstNameJobTitlePattern(),
                 new Patterns.TitleFirstNickLastPattern(),
                 new Patterns.TitleFirstNickLastSuffixPattern(),
-                new Patterns.TitleFirstPrefixedLastPattern()
+                new Patterns.TitleFirstPrefixedLastPattern(),
+                new Patterns.LastNameCommaFirstNamePattern(),
+                new Patterns.LastNameCommaFirstNameMiddleNamePattern()
             };
 
 		public string FirstName { get; private set; }
