@@ -20,7 +20,7 @@ namespace BinaryFog.NameParser.Patterns
                 MiddleName = match.Groups["middle"].Value,
                 LastName = match.Groups["last"].Value,
                 DisplayName = $"{match.Groups["first"].Value} {match.Groups["middle"].Value} {match.Groups["last"].Value}",
-                Score = 200
+                Score = 199
             };
             return pn;
         }

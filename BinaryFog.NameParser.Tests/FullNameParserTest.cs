@@ -53,6 +53,23 @@ namespace BinaryFog.NameParser.Tests {
         ///A test for Parse
         ///</summary>
         [TestMethod]
+        public void Parse_FirstLastSuffix()
+        {
+            var fullName = "Michael Crawford III";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.AreEqual("Michael", target.FirstName);
+            Assert.AreEqual(null, target.MiddleName);
+            Assert.AreEqual("Crawford", target.LastName);
+            Assert.AreEqual("III", target.Suffix);
+            Assert.IsNull(target.Title);
+        }
+
+        /// <summary>
+        ///A test for Parse
+        ///</summary>
+        [TestMethod]
         public void Parse_MaryCatherineWatts()
         {
             var fullName = "Mary Catherine Watts";
