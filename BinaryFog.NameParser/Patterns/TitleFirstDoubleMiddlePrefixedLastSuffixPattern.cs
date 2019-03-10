@@ -2,16 +2,16 @@
 using static BinaryFog.NameParser.RegexNameComponents;
 
 namespace BinaryFog.NameParser.Patterns {
-	internal class TitleFirstDoubleMiddlePrefixedLastSuffixPattern : IPattern {
+	internal class TitleFirstDoubleMiddlePrefixedLastSuffixPattern : IFullNamePattern {
 		private static readonly Regex Rx = new Regex(
 			@"^" + Title + Space + First + Space + @"(?<middle1>\w+)" + Space + @"(?<middle2>\w+)" + Space + Prefix + Space + Last + OptionalCommaSpace + Suffix + @"$",
-			RegexOptions.Compiled | RegexOptions.IgnoreCase);
+			CommonPatternRegexOptions);
 
-		public ParsedName Parse(string rawName) {
+		public ParsedFullName Parse(string rawName) {
 			var match = Rx.Match(rawName);
 			if (!match.Success) return null;
 			var prefix = match.Groups["prefix"].Value;
-            var pn = new ParsedName(this.GetType().Name)
+            var pn = new ParsedFullName
             {
                 Title = match.Groups["title"].Value,
 				FirstName = match.Groups["first"].Value,

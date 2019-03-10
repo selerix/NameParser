@@ -145,3 +145,6 @@ vc
 vmd
 vr
 ws
+md
+ca
+cpa

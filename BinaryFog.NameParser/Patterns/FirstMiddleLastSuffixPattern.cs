@@ -1,27 +1,38 @@
 ﻿using System.Text.RegularExpressions;
 using static BinaryFog.NameParser.RegexNameComponents;
+using static BinaryFog.NameParser.NameComponentSets;
 
 namespace BinaryFog.NameParser.Patterns
 {
-    internal class FirstMiddleLastSuffixPattern : IPattern
+    internal class FirstMiddleLastSuffixPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
             @"^" + First + Space + Middle + Space + Last + Space + Suffix + @"$",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            CommonPatternRegexOptions);
 
 
-        public ParsedName Parse(string rawName)
+        public ParsedFullName Parse(string rawName)
         {
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
-            var pn = new ParsedName(this.GetType().Name)
+
+            var firstName = match.Groups["first"].Value;
+            var middleName = match.Groups["middle"].Value;
+            var lastName = match.Groups["last"].Value;
+
+            var scoreMod = 0;
+            ModifyScoreExpectedFirstNames(ref scoreMod, firstName, middleName);
+            ModifyScoreExpectedLastName(ref scoreMod, lastName);
+
+            var pn = new ParsedFullName
             {
-                FirstName = match.Groups["first"].Value,
-                MiddleName = match.Groups["middle"].Value,
-                LastName = match.Groups["last"].Value,
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName,
                 Suffix = match.Groups["suffix"].Value,
-                DisplayName = $"{match.Groups["first"].Value} {match.Groups["last"].Value}",
-                Score = 100
+                DisplayName = $"{firstName} {middleName} {lastName}",
+                Score = 100 + scoreMod,
+                Rule = nameof(FirstMiddleLastSuffixPattern)
             };
             return pn;
         }

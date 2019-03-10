@@ -1,26 +1,37 @@
 ﻿using System.Text.RegularExpressions;
 using static BinaryFog.NameParser.RegexNameComponents;
+using static BinaryFog.NameParser.NameComponentSets;
 
 namespace BinaryFog.NameParser.Patterns
 {
-    internal class FirstInitialPrefixedLastPattern : IPattern
+    internal class FirstInitialPrefixedLastPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
             @"^" + First + Space + Initial + Space + Prefix + Space + Last + @"$",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            CommonPatternRegexOptions);
 
-        public ParsedName Parse(string rawName)
+        public ParsedFullName Parse(string rawName)
         {
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
+            var firstName = match.Groups["first"].Value;
+            var middleName = $"{match.Groups["initial"]}.";
             var prefix = match.Groups["prefix"].Value;
-            var pn = new ParsedName(this.GetType().Name)
+            var lastPart = match.Groups["last"].Value;
+            var lastName = $"{prefix} {lastPart}";
+
+            var scoreMod = 0;
+            ModifyScoreExpectedFirstName(ref scoreMod, firstName);
+            ModifyScoreExpectedLastName(ref scoreMod, lastPart);
+
+            var pn = new ParsedFullName
             {
-                FirstName = match.Groups["first"].Value,
-                MiddleName = match.Groups["initial"].Value.Replace(".", string.Empty),
-                LastName = prefix + " " + match.Groups["last"].Value,
-                DisplayName = $"{match.Groups["first"].Value} {prefix} {match.Groups["last"].Value}",
-                Score = 100
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName,
+                DisplayName = $"{firstName} {middleName} {lastName}",
+                Score = 100,
+                Rule = nameof(FirstInitialPrefixedLastPattern)
             };
             return pn;
         }

@@ -1,30 +1,34 @@
 ﻿using System.Text.RegularExpressions;
 using static BinaryFog.NameParser.RegexNameComponents;
 
-namespace BinaryFog.NameParser.Patterns {
-	internal class FirstNameOnlyPattern : IPattern {
-		private static readonly Regex Rx = new Regex(
-			@"^" + First + @"$",
-			RegexOptions.Compiled | RegexOptions.IgnoreCase);
+namespace BinaryFog.NameParser.Patterns
+{
+    internal class FirstNameOnlyPattern : IFullNamePattern
+    {
+        private static readonly Regex Rx = new Regex(
+            @"^" + First + @"$",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 
-		public ParsedName Parse(string rawName) {
-			var match = Rx.Match(rawName);
-			if (!match.Success) return null;
-            var pn = new ParsedName(this.GetType().Name)
+        public ParsedFullName Parse(string rawName)
+        {
+            var match = Rx.Match(rawName);
+            if (!match.Success) return null;
+            var pn = new ParsedFullName
             {
                 DisplayName = rawName,
-				Score = 100
-			};
+                Score = 100,
+                Rule = nameof(FirstNameOnlyPattern)
+            };
 
-			var matchedName = match.Groups["first"].Value;
+            var matchedName = match.Groups["first"].Value;
 
-			if (NameComponentSets.LastNamesInUppercase.Contains(matchedName.ToUpper()))
-				pn.LastName = matchedName;
-			else
-				pn.FirstName = matchedName;
+            if (NameComponentSets.LastNamesInUppercase.Contains(matchedName.ToUpper()))
+                pn.LastName = matchedName;
+            else
+                pn.FirstName = matchedName;
 
-			return pn;
-		}
-	}
+            return pn;
+        }
+    }
 }

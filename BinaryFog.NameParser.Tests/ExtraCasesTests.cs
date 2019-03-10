@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace BinaryFog.NameParser.Tests
 {
@@ -16,120 +15,186 @@ namespace BinaryFog.NameParser.Tests
     /// Mr.Jack Johnson, ESQ"
     /// Jose Miguel De La Vega
     /// </summary>
-    [TestClass]
     public class ExtraCasesTests
     {
-	    /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        [ExcludeFromCodeCoverage]
-        public TestContext TestContext { get; set; }
-
-	    #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
-        [TestMethod]
+        [Fact]
         public void Parse_DehartCommaSpacePhilip()
         {
             var fullName = "DeHart, Philip";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("Philip", target.FirstName);
-            Assert.AreEqual("DeHart", target.LastName);
-            Assert.AreEqual("Philip DeHart", target.DisplayName);
-            Assert.IsNull(target.Title);
+            Assert.Equal("Philip", target.FirstName);
+            Assert.Equal("DeHart", target.LastName);
+            Assert.Equal("Philip DeHart", target.DisplayName);
+            Assert.Null(target.Title);
         }
 
-        [TestMethod]
+        [Fact]
+        public void Parse_Comma_Separated_CompoundLastName()
+        {
+            string fullName = "O'GRADY, MARY F";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("MARY", target.FirstName);
+            Assert.Equal("O'GRADY", target.LastName);
+            Assert.Equal("F.", target.MiddleName);
+            Assert.Null(target.Suffix);
+        }
+
+        [Fact]
+        public void Parse_FirstMiddleWithDotLastWithHyphen()
+        {
+            string fullName = "Tammy L. Blythe-Baker";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("Blythe-Baker", target.LastName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Null(target.Suffix);
+        }
+
+        [Fact]
+        public void Parse_FirstMiddleShortLastSuffix()
+        {
+            string fullName = "William H Moss JR";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("William", target.FirstName);
+            Assert.Equal("Moss", target.LastName);
+            Assert.Equal("H.", target.MiddleName);
+            Assert.Equal("JR", target.Suffix);
+        }
+
+
+        [Fact]
+        public void Parse_InesDelaCuna()
+        {
+            //ARRANGE
+            var fullName = "Ines De La Cuna";
+            var target = new FullNameParser(fullName);
+
+            //ACT
+            target.Parse();
+
+            //ASSERT
+            Assert.Equal("Ines", target.FirstName);
+            Assert.Equal("De La Cuna", target.LastName);
+            Assert.Equal("Ines De La Cuna", target.DisplayName);
+            Assert.Null(target.Title);
+        }
+
+        /// <summary>
+        ///A test for Parse
+        ///</summary>
+        [Fact]
+        public void Parse_FirstLastSuffix()
+        {
+            //ARRANGE
+            var fullName = "Michael Crawford III";
+            var target = new FullNameParser(fullName);
+
+            //ACT
+            target.Parse();
+
+            Assert.Equal("Michael", target.FirstName);
+            Assert.Null(target.MiddleName);
+            Assert.Equal("Crawford", target.LastName);
+            Assert.Equal("III", target.Suffix);
+            Assert.Null(target.Title);
+            Assert.Equal("Michael Crawford", target.DisplayName);
+        }
+
+        [Fact]
+        public void Parse_JohnKennedyIII()
+        {
+            //ARRANGE
+            var fullName = "John Kennedy III";
+            var target = new FullNameParser(fullName);
+
+            //ACT
+            target.Parse();
+
+            //ASSERT
+            Assert.Equal("John", target.FirstName);
+            Assert.Equal("Kennedy", target.LastName);
+            Assert.Equal("John Kennedy", target.DisplayName);
+            Assert.Null(target.Title);
+            Assert.Equal("III", target.Suffix);
+        }
+
+        [Fact]
         public void Parse_DehartCommaTwoSpacesPhilip()
         {
             var fullName = "DeHart,  Philip";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("Philip", target.FirstName);
-            Assert.AreEqual("DeHart", target.LastName);
-            Assert.AreEqual("Philip DeHart", target.DisplayName);
-            Assert.IsNull(target.Title);
+            Assert.Equal("Philip", target.FirstName);
+            Assert.Equal("DeHart", target.LastName);
+            Assert.Equal("Philip DeHart", target.DisplayName);
+            Assert.Null(target.Title);
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_DehartCommaPhilip()
         {
             var fullName = "DeHart,Philip";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("Philip", target.FirstName);
-            Assert.AreEqual("DeHart", target.LastName);
-            Assert.AreEqual("Philip DeHart", target.DisplayName);
-            Assert.IsNull(target.Title);
+            Assert.Equal("Philip", target.FirstName);
+            Assert.Equal("DeHart", target.LastName);
+            Assert.Equal("Philip DeHart", target.DisplayName);
+            Assert.Null(target.Title);
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_PhilipDeHartEsq()
         {
             var fullName = "Philip DeHart ESQ";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("Philip", target.FirstName);
-            Assert.AreEqual("DeHart", target.LastName);
-            Assert.AreEqual("ESQ", target.Suffix);
-            Assert.AreEqual("Philip DeHart", target.DisplayName);
-            Assert.IsNull(target.Title);
+            Assert.Equal("Philip", target.FirstName);
+            Assert.Equal("DeHart", target.LastName);
+            Assert.Equal("ESQ", target.Suffix);
+            Assert.Equal("Philip DeHart", target.DisplayName);
+            Assert.Null(target.Title);
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_MrJackJohnsonEsq()
         {
             var fullName = @"Mr.Jack Johnson, ESQ""";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("Mr.", target.Title);
-            Assert.AreEqual("Jack", target.FirstName);
-            Assert.AreEqual("Johnson", target.LastName);
-            Assert.AreEqual(@"ESQ""", target.Suffix);
-            Assert.AreEqual("Jack Johnson", target.DisplayName);
+            Assert.Equal("Mr.", target.Title);
+            Assert.Equal("Jack", target.FirstName);
+            Assert.Equal("Johnson", target.LastName);
+            Assert.Equal(@"ESQ""", target.Suffix);
+            Assert.Equal("Jack Johnson", target.DisplayName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_PasqualeQuotePatQuoteJohnson()
         {
             var fullName = "Pasquale 'Pat' Johnson";
             var target = new FullNameParser(fullName);
             target.Parse();
 
-            
-            Assert.AreEqual("Pasquale", target.FirstName);
-            Assert.AreEqual("Johnson", target.LastName);
-            Assert.AreEqual("Pasquale Johnson", target.DisplayName);
-            Assert.AreEqual("Pat", target.NickName);
+
+            Assert.Equal("Pasquale", target.FirstName);
+            Assert.Equal("Johnson", target.LastName);
+            Assert.Equal("Pasquale Johnson", target.DisplayName);
+            Assert.Equal("Pat", target.NickName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_JoseMiguelDelaVega()
         {
             var fullName = "Jose Miguel de la Vega";
@@ -137,14 +202,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Jose", target.FirstName);
-            Assert.AreEqual("Miguel", target.MiddleName);
-            Assert.AreEqual("de la Vega", target.LastName);
-            Assert.AreEqual("Jose de la Vega", target.DisplayName);
+            Assert.Equal("Jose", target.FirstName);
+            Assert.Equal("Miguel", target.MiddleName);
+            Assert.Equal("de la Vega", target.LastName);
+            Assert.Equal(fullName, target.DisplayName);
         }
 
         //kennedy, john(jack) f
-        [TestMethod]
+        [Fact]
         public void Parse_KennedyCommaJohnScopeJackScopeSpaceF()
         {
             var fullName = "Kennedy, John(Jack) F";
@@ -152,13 +217,13 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("John", target.FirstName);
-            Assert.AreEqual("Kennedy", target.LastName);
-            Assert.AreEqual("John Kennedy", target.DisplayName);
+            Assert.Equal("John", target.FirstName);
+            Assert.Equal("Kennedy", target.LastName);
+            Assert.Equal("John Kennedy", target.DisplayName);
         }
 
         //kennedy, john(jack) f
-        [TestMethod]
+        [Fact]
         public void Parse_JohnScopeJackScopeSpaceFSpaceKennedy()
         {
             var fullName = "John(Jack) F Kennedy";
@@ -166,13 +231,13 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("John", target.FirstName);
-            Assert.AreEqual("Kennedy", target.LastName);
-            Assert.AreEqual("John Kennedy", target.DisplayName);
+            Assert.Equal("John", target.FirstName);
+            Assert.Equal("Kennedy", target.LastName);
+            Assert.Equal("John F. Kennedy", target.DisplayName);
         }
 
         //Maria Delores Esquivel-Moreno
-        [TestMethod]
+        [Fact]
         public void Parse_MariaSpaceDeloresSpaceEsquivelDashMoreno()
         {
             var fullName = "Maria Delores Esquivel-Moreno";
@@ -180,14 +245,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Maria", target.FirstName);
-            Assert.AreEqual("Delores", target.MiddleName);
-            Assert.AreEqual("Esquivel-Moreno", target.LastName);
-            Assert.AreEqual("Maria Esquivel-Moreno", target.DisplayName);
+            Assert.Equal("Maria", target.FirstName);
+            Assert.Equal("Delores", target.MiddleName);
+            Assert.Equal("Esquivel-Moreno", target.LastName);
+            Assert.Equal(fullName, target.DisplayName);
         }
 
         //MANUEL ESQUIPULAS SOHOM
-        [TestMethod]
+        [Fact]
         public void Parse_ManuelSpaceEsquipulasSpaceSohom()
         {
             var fullName = "Manuel Esquipulas Sohom";
@@ -195,13 +260,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Manuel", target.FirstName);
-            Assert.AreEqual("Esquipulas Sohom", target.LastName);
-            Assert.AreEqual("Manuel Esquipulas Sohom", target.DisplayName);
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Esquipulas", target.MiddleName);
+            Assert.Equal("Sohom", target.LastName);
+            Assert.Equal("Manuel Esquipulas Sohom", target.DisplayName);
         }
 
         //Tammy L. Baker
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotBaker()
         {
             var fullName = "Tammy L. Baker";
@@ -209,14 +275,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("Baker", target.LastName);
-            Assert.AreEqual("Tammy Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("Baker", target.LastName);
+            Assert.Equal("Tammy L. Baker", target.DisplayName);
         }
 
         //Tammy L. van Baker
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotVanSpaceBaker()
         {
             var fullName = "Tammy L. van Baker";
@@ -224,14 +290,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("van Baker", target.LastName);
-            Assert.AreEqual("Tammy van Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("van Baker", target.LastName);
+            Assert.Equal("Tammy L. van Baker", target.DisplayName);
         }
 
         //Tammy L. Blythe-Baker
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotBlytheHyphenBaker()
         {
             var fullName = "Tammy L. Blythe-Baker";
@@ -239,14 +305,14 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("Blythe-Baker", target.LastName);
-            Assert.AreEqual("Tammy Blythe-Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("Blythe-Baker", target.LastName);
+            Assert.Equal("Tammy L. Blythe-Baker", target.DisplayName);
         }
 
         //Jimmy Lee Dabney II
-        [TestMethod]
+        [Fact]
         public void Parse_JimmySpaceLeeSpaceDabneySpaceII()
         {
             var fullName = "Jimmy Lee Dabney II";
@@ -254,15 +320,15 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Jimmy", target.FirstName);
-            Assert.AreEqual("Lee", target.MiddleName);
-            Assert.AreEqual("Dabney", target.LastName);
-            Assert.AreEqual("II", target.Suffix);
-            Assert.AreEqual("Jimmy Dabney", target.DisplayName);
+            Assert.Equal("Jimmy", target.FirstName);
+            Assert.Equal("Lee", target.MiddleName);
+            Assert.Equal("Dabney", target.LastName);
+            Assert.Equal("II", target.Suffix);
+            Assert.Equal("Jimmy Lee Dabney", target.DisplayName);
         }
 
         //Tammy L. Baker II
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotBakerSpaceII()
         {
             var fullName = "Tammy L. Baker II";
@@ -270,15 +336,15 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("Baker", target.LastName);
-            Assert.AreEqual("II", target.Suffix);
-            Assert.AreEqual("Tammy Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("Baker", target.LastName);
+            Assert.Equal("II", target.Suffix);
+            Assert.Equal("Tammy L. Baker", target.DisplayName);
         }
 
         //Tammy L. Blythe-Baker II
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotBlytheHyphenBakerSpaceII()
         {
             var fullName = "Tammy L. Blythe-Baker II";
@@ -286,15 +352,15 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("Blythe-Baker", target.LastName);
-            Assert.AreEqual("II", target.Suffix);
-            Assert.AreEqual("Tammy Blythe-Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("Blythe-Baker", target.LastName);
+            Assert.Equal("II", target.Suffix);
+            Assert.Equal("Tammy L. Blythe-Baker", target.DisplayName);
         }
 
         //Tammy L. van Baker II
-        [TestMethod]
+        [Fact]
         public void Parse_TammySpaceLDotVanSpaceBakerSpaceII()
         {
             var fullName = "Tammy L. van Baker II";
@@ -302,29 +368,154 @@ namespace BinaryFog.NameParser.Tests
             target.Parse();
 
 
-            Assert.AreEqual("Tammy", target.FirstName);
-            Assert.AreEqual("L", target.MiddleName);
-            Assert.AreEqual("van Baker", target.LastName);
-            Assert.AreEqual("II", target.Suffix);
-            Assert.AreEqual("Tammy van Baker", target.DisplayName);
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("van Baker", target.LastName);
+            Assert.Equal("II", target.Suffix);
+            Assert.Equal("Tammy L. van Baker", target.DisplayName);
         }
 
         /* No, you can not have a title of SR.
         //SR. John Henry William dela Vega, Jr Esq.
-        [TestMethod()]
+        [Fact]
         public void Parse_SrJohnHenryWilliamdelaVegaCommaJrEsq()
         {
             string fullName = "SR. John Henry William dela Vega, Jr Esq.";
             FullNameParser target = new FullNameParser(fullName);
             target.Parse();
 
-            Assert.AreEqual("SR.", target.Title);
-            Assert.AreEqual("John", target.FirstName);
-            Assert.AreEqual("Henry William", target.MiddleName);
-            Assert.AreEqual("dela Vega", target.LastName);
-            Assert.AreEqual("Jr Esq.", target.Suffix);
-            Assert.AreEqual("John dela Vega", target.DisplayName);
+            Assert.Equal("SR.", target.Title);
+            Assert.Equal("John", target.FirstName);
+            Assert.Equal("Henry William", target.MiddleName);
+            Assert.Equal("dela Vega", target.LastName);
+            Assert.Equal("Jr Esq.", target.Suffix);
+            Assert.Equal("John dela Vega", target.DisplayName);
         }
 		*/
+        [Fact]
+        public void FirstPrefixedLastSuffix()
+        {
+            var fullName = "Tammy van Baker II";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("van Baker", target.LastName);
+            Assert.Equal("Tammy van Baker", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstMiddlePrefixedLastSuffix()
+        {
+            var fullName = "Tammy Lee van Baker II";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Tammy", target.FirstName);
+            Assert.Equal("Lee", target.MiddleName);
+            Assert.Equal("van Baker", target.LastName);
+            Assert.Equal("Tammy Lee van Baker", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstNickHyphenatedLast()
+        {
+            var fullName = "Manuel \"Manny\" Esquipulas-Sohom";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Manuel Esquipulas-Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstNickMiddleHyphenatedLast()
+        {
+            var fullName = "Maria \"Mary\" Delores Esquipulas-Sohom";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Maria", target.FirstName);
+            Assert.Equal("Delores", target.MiddleName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Maria Delores Esquipulas-Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstMiddleHyphenatedLastSuffix()
+        {
+            var fullName = "Manuel Miguel Esquipulas-Sohom II";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Miguel", target.MiddleName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Manuel Miguel Esquipulas-Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstTwoMiddleHyphenatedLast()
+        {
+            var fullName = "Manuel Miguel Montoya Esquipulas-Sohom";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Miguel Montoya", target.MiddleName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Manuel Miguel Montoya Esquipulas-Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FemaleFirstTwoMiddleHyphenatedLast()
+        {
+            var fullName = "Maria Ellen Delores Esquipulas-Sohom";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Maria", target.FirstName);
+            Assert.Equal("Ellen Delores", target.MiddleName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Maria Ellen Delores Esquipulas-Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstLastNick()
+        {
+            var fullName = "Manuel Sohom \"Manny\"";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Sohom", target.LastName);
+            Assert.Equal("Manuel Sohom", target.DisplayName);
+        }
+
+        [Fact]
+        public void FirstHyphenatedLastNick()
+        {
+            var fullName = "Manuel Esquipulas-Sohom \"Manny\"";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Manuel", target.FirstName);
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Manuel Esquipulas-Sohom", target.DisplayName);
+            Assert.Equal("Manny", target.NickName);
+        }
+
+        [Fact]
+        public void SingleHyphenated()
+        {
+            var fullName = "Esquipulas-Sohom";
+            var target = new FullNameParser(fullName);
+            target.Parse();
+
+            Assert.Equal("Esquipulas-Sohom", target.LastName);
+            Assert.Equal("Esquipulas-Sohom", target.DisplayName);
+        }
+
     }
 }

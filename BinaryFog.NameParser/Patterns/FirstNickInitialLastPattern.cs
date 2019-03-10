@@ -1,24 +1,40 @@
 ﻿using System.Text.RegularExpressions;
 using static BinaryFog.NameParser.RegexNameComponents;
+using static BinaryFog.NameParser.NameComponentSets;
 
-namespace BinaryFog.NameParser.Patterns {
-	internal class FirstNickInitialLastPattern : IPattern {
-		private static readonly Regex Rx = new Regex(
-			@"^" + First + Space + Nick + Space + Initial + Space + Last + @"$",
-			RegexOptions.Compiled | RegexOptions.IgnoreCase);
+namespace BinaryFog.NameParser.Patterns
+{
+    internal class FirstNickInitialLastPattern : IFullNamePattern
+    {
+        private static readonly Regex Rx = new Regex(
+            @"^" + First + OptionalSpace + Nick + OptionalSpace + Initial + Space + Last + @"$",
+            CommonPatternRegexOptions);
 
-		public ParsedName Parse(string rawName) {
-			var match = Rx.Match(rawName);
-			if (!match.Success) return null;
-            var pn = new ParsedName(this.GetType().Name)
+        public ParsedFullName Parse(string rawName)
+        {
+            var match = Rx.Match(rawName);
+            if (!match.Success) return null;
+            var firstName = match.Groups["first"].Value;
+            var middleName = match.Groups["initial"].Value;
+            var lastName = match.Groups["last"].Value;
+            var nickName = match.Groups["nick"].Value;
+
+            var scoreMod = 0;
+            ModifyScoreExpectedFirstName(ref scoreMod, firstName);
+            ModifyScoreExpectedName(ref scoreMod, nickName);
+            ModifyScoreExpectedLastName(ref scoreMod, lastName);
+
+            var pn = new ParsedFullName
             {
-                FirstName = match.Groups["first"].Value,
-				LastName = match.Groups["last"].Value,
-				NickName = match.Groups["nick"].Value,
-				DisplayName = $"{match.Groups["first"].Value} {match.Groups["last"].Value}",
-				Score = 100
-			};
-			return pn;
-		}
-	}
+                FirstName = firstName,
+                MiddleName = $"{middleName}.",
+                LastName = lastName,
+                NickName = nickName,
+                DisplayName = $"{firstName} {middleName}. {lastName}",
+                Score = 200 + scoreMod,
+                Rule = nameof(FirstNickInitialLastPattern)
+            };
+            return pn;
+        }
+    }
 }
