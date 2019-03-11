@@ -50,7 +50,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\BenefitAgent\src\key.pfx</AssemblyOriginatorKeyFile>
@@ -77,6 +77,8 @@
     <Compile Include="Patterns\DoubleWordFirstLastPattern.cs" />
     <Compile Include="Patterns\FirstHyphenatedLastNickPattern.cs" />
     <Compile Include="Patterns\FirstHyphenatedLastPattern.cs" />
+    <Compile Include="Patterns\FirstHyphenatedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\FirstInitialDoubleLastPattern.cs" />
     <Compile Include="Patterns\FirstInitialHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstInitialHyphenatedLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstInitialLastCommaSuffixPattern.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Patterns\FirstInitialLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstInitialPrefixedLastPattern.cs" />
     <Compile Include="Patterns\FirstInitialPrefixedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\FirstInitialTrippleLastPattern.cs" />
     <Compile Include="Patterns\FirstLastNickPattern.cs" />
     <Compile Include="Patterns\FirstMiddleHyphenatedLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstMiddleLastPattern.cs" />
@@ -94,10 +97,13 @@
     <Compile Include="Patterns\FirstNickMiddleHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstNickMiddleLastPattern.cs" />
     <Compile Include="Patterns\FirstPrefixedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\FirstTwoInitialLastPattern.cs" />
     <Compile Include="Patterns\FirstTwoLastPattern.cs" />
     <Compile Include="Patterns\FirstTwoMiddleHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstTwoMiddleLastPattern.cs" />
+    <Compile Include="Patterns\HyphenatedFirstInitialLastPattern.cs" />
     <Compile Include="Patterns\HyphenatedFirstLastPattern.cs" />
+    <Compile Include="Patterns\HyphenatedFirstMiddleLast.cs" />
     <Compile Include="Patterns\LastNameCommaFirstNameMiddleNamePattern.cs" />
     <Compile Include="Patterns\LastNameCommaFirstNameInitialPattern.cs" />
     <Compile Include="Patterns\SingleHyphenatedNameOnlyPattern.cs" />

@@ -7,7 +7,7 @@ namespace BinaryFog.NameParser.Patterns
     internal class LastNameCommaFirstNameNickNameInitialPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
-            @"^" + Last + CommaSpace + First + OptionalSpace + Nick + OptionalSpace + Initial + @"$",
+            @"^" + Last + CommaSpace + First + OptionalSpace + Nick + Space + Initial + @"$",
             CommonPatternRegexOptions);
 
         public ParsedFullName Parse(string rawName)
@@ -15,7 +15,7 @@ namespace BinaryFog.NameParser.Patterns
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
             var firstName = match.Groups["first"].Value;
-            var middleName = $"{match.Groups["initial"]}.";
+            var middleName = $"{match.Groups["initial"]}";
             var lastName = match.Groups["last"].Value;
             var nickName = match.Groups["nick"].Value;
 

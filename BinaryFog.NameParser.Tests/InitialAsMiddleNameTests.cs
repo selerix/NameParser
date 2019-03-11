@@ -1,15 +1,14 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
+﻿using Xunit;
 
-namespace BinaryFog.NameParser.Tests {
+namespace BinaryFog.NameParser.Tests
+{
 
 
-	/// <summary>
-	///This is a test class for FullNameParserTest and is intended
-	///to contain all FullNameParserTest Unit Tests
-	///</summary>
-	public class InitialAsMiddleNameTests
+    /// <summary>
+    ///This is a test class for FullNameParserTest and is intended
+    ///to contain all FullNameParserTest Unit Tests
+    ///</summary>
+    public class InitialAsMiddleNameTests
     {
 		[Fact]
 		public void Parse_MrJonADOTvanderWaalJr() {
@@ -19,7 +18,7 @@ namespace BinaryFog.NameParser.Tests {
 
 			Assert.Equal("Jon", target.FirstName);
 			Assert.Equal("van der Waal", target.LastName);
-            Assert.Equal("A.", target.MiddleName);
+            Assert.Equal("A", target.MiddleName);
             Assert.Equal("Mr.", target.Title);
             Assert.Equal("Jr.", target.Suffix);
 
@@ -34,7 +33,7 @@ namespace BinaryFog.NameParser.Tests {
 
             Assert.Equal("Jon", target.FirstName);
             Assert.Equal("Waal", target.LastName);
-            Assert.Equal("A.", target.MiddleName);
+            Assert.Equal("A", target.MiddleName);
             Assert.Equal("Mr.", target.Title);
             Assert.Equal("Jr.", target.Suffix);
 
@@ -49,7 +48,7 @@ namespace BinaryFog.NameParser.Tests {
 
             Assert.Equal("Jon", target.FirstName);
             Assert.Equal("van der Waal", target.LastName);
-            Assert.Equal("A.", target.MiddleName);
+            Assert.Equal("A", target.MiddleName);
             Assert.Equal("Jr.", target.Suffix);
 
         }
@@ -63,7 +62,7 @@ namespace BinaryFog.NameParser.Tests {
 
             Assert.Equal("Jon", target.FirstName);
             Assert.Equal("Waal", target.LastName);
-            Assert.Equal("A.", target.MiddleName);
+            Assert.Equal("A", target.MiddleName);
             Assert.Equal("Jr.", target.Suffix);
 
         }
@@ -89,7 +88,7 @@ namespace BinaryFog.NameParser.Tests {
 
             Assert.Equal("James", target.FirstName);
             Assert.Equal("Adams", target.LastName);
-            Assert.Equal("A.", target.MiddleName);
+            Assert.Equal("A", target.MiddleName);
         }
 
 

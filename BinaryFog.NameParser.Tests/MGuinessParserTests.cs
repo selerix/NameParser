@@ -21,9 +21,9 @@ namespace BinaryFog.NameParser.Tests {
 
             Assert.Equal("John", target.FirstName);
             Assert.Equal("Hancock", target.LastName);
-            Assert.Equal("T.", target.MiddleName);
+            Assert.Equal("T", target.MiddleName);
             Assert.Equal("Jr.", target.Suffix);
-            Assert.Equal("John T. Hancock", target.DisplayName);
+            Assert.Equal("John T Hancock", target.DisplayName);
 
         }
 

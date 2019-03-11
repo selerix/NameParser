@@ -26,7 +26,7 @@ namespace BinaryFog.NameParser.Patterns
                 FirstName = firstName,
                 LastName = lastName,
                 DisplayName = $"{firstName} {lastName}",
-                Score = 100 + scoreMod,
+                Score = 110 + scoreMod,
                 Rule = nameof(LastNameCommaFirstNamePattern)
             };
             return pn;

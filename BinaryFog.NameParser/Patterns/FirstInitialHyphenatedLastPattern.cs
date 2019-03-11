@@ -16,7 +16,7 @@ namespace BinaryFog.NameParser.Patterns
             if (!match.Success) return null;
 
             var firstName = match.Groups["first"].Value;
-            var middleName = $"{match.Groups["initial"]}.";
+            var middleName = $"{match.Groups["initial"]}";
             var lastPart1 = match.Groups["last1"].Value;
             var lastPart2 = match.Groups["last2"].Value;
             var lastName = $"{lastPart1}-{lastPart2}";

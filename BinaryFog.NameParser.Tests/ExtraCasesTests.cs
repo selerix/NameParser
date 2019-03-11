@@ -39,7 +39,7 @@ namespace BinaryFog.NameParser.Tests
 
             Assert.Equal("MARY", target.FirstName);
             Assert.Equal("O'GRADY", target.LastName);
-            Assert.Equal("F.", target.MiddleName);
+            Assert.Equal("F", target.MiddleName);
             Assert.Null(target.Suffix);
         }
 
@@ -52,7 +52,7 @@ namespace BinaryFog.NameParser.Tests
 
             Assert.Equal("Tammy", target.FirstName);
             Assert.Equal("Blythe-Baker", target.LastName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Null(target.Suffix);
         }
 
@@ -65,7 +65,7 @@ namespace BinaryFog.NameParser.Tests
 
             Assert.Equal("William", target.FirstName);
             Assert.Equal("Moss", target.LastName);
-            Assert.Equal("H.", target.MiddleName);
+            Assert.Equal("H", target.MiddleName);
             Assert.Equal("JR", target.Suffix);
         }
 
@@ -142,7 +142,7 @@ namespace BinaryFog.NameParser.Tests
         [Fact]
         public void Parse_DehartCommaPhilip()
         {
-            var fullName = "DeHart,Philip";
+            var fullName = "DeHart, Philip";
             var target = new FullNameParser(fullName);
             target.Parse();
 
@@ -276,9 +276,9 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("Baker", target.LastName);
-            Assert.Equal("Tammy L. Baker", target.DisplayName);
+            Assert.Equal("Tammy L Baker", target.DisplayName);
         }
 
         //Tammy L. van Baker
@@ -291,9 +291,9 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("van Baker", target.LastName);
-            Assert.Equal("Tammy L. van Baker", target.DisplayName);
+            Assert.Equal("Tammy L van Baker", target.DisplayName);
         }
 
         //Tammy L. Blythe-Baker
@@ -306,9 +306,9 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("Blythe-Baker", target.LastName);
-            Assert.Equal("Tammy L. Blythe-Baker", target.DisplayName);
+            Assert.Equal("Tammy L Blythe-Baker", target.DisplayName);
         }
 
         //Jimmy Lee Dabney II
@@ -337,10 +337,10 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("Baker", target.LastName);
             Assert.Equal("II", target.Suffix);
-            Assert.Equal("Tammy L. Baker", target.DisplayName);
+            Assert.Equal("Tammy L Baker", target.DisplayName);
         }
 
         //Tammy L. Blythe-Baker II
@@ -353,10 +353,10 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("Blythe-Baker", target.LastName);
             Assert.Equal("II", target.Suffix);
-            Assert.Equal("Tammy L. Blythe-Baker", target.DisplayName);
+            Assert.Equal("Tammy L Blythe-Baker", target.DisplayName);
         }
 
         //Tammy L. van Baker II
@@ -369,10 +369,10 @@ namespace BinaryFog.NameParser.Tests
 
 
             Assert.Equal("Tammy", target.FirstName);
-            Assert.Equal("L.", target.MiddleName);
+            Assert.Equal("L", target.MiddleName);
             Assert.Equal("van Baker", target.LastName);
             Assert.Equal("II", target.Suffix);
-            Assert.Equal("Tammy L. van Baker", target.DisplayName);
+            Assert.Equal("Tammy L van Baker", target.DisplayName);
         }
 
         /* No, you can not have a title of SR.

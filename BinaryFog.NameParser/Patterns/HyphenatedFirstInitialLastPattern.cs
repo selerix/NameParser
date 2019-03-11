@@ -4,33 +4,36 @@ using static BinaryFog.NameParser.NameComponentSets;
 
 namespace BinaryFog.NameParser.Patterns
 {
-    public class FirstInitialLastCommaSuffixPattern : IFullNamePattern
+    class HyphenatedFirstInitialLastPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
-            @"^" + First + Space + Initial + Space + Last + CommaSpace + Suffix + @"$",
+            @"^" + @"(?<first1>\w+)" + HyphenOptionallySpaced + @"(?<first2>" + Name + @")" + Space + Initial + Space + @"(?<last>" + Name + @")$",
             CommonPatternRegexOptions);
 
         public ParsedFullName Parse(string rawName)
         {
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
-            var firstName = match.Groups["first"].Value;
-            var middleName = $"{match.Groups["initial"]}";
+
+            var firstPart1 = match.Groups["first1"].Value;
+            var firstPart2 = match.Groups["first2"].Value;
+            var middleName = match.Groups["initial"].Value;
+            var firstName = $"{match.Groups["first1"].Value}-{match.Groups["first2"].Value}";
             var lastName = match.Groups["last"].Value;
 
             var scoreMod = 0;
-            ModifyScoreExpectedFirstName(ref scoreMod, firstName);
+            ModifyScoreExpectedFirstNames(ref scoreMod, firstPart1, firstPart2);
             ModifyScoreExpectedLastName(ref scoreMod, lastName);
+
 
             var pn = new ParsedFullName
             {
                 FirstName = firstName,
-                MiddleName = middleName,
                 LastName = lastName,
-                Suffix = match.Groups["suffix"].Value,
-                DisplayName = $"{firstName} {middleName} {lastName}",
+                MiddleName = $"{middleName}",
+                DisplayName = $"{firstName} {lastName}",
                 Score = 100 + scoreMod,
-                Rule = nameof(FirstInitialLastCommaSuffixPattern)
+                Rule = nameof(HyphenatedFirstInitialLastPattern)
             };
             return pn;
         }

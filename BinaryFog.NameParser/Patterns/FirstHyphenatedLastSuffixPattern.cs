@@ -4,11 +4,11 @@ using static BinaryFog.NameParser.NameComponentSets;
 
 namespace BinaryFog.NameParser.Patterns
 {
-    public class FirstInitialLastCommaSuffixPattern : IFullNamePattern
+    internal class FirstHyphenatedLastSuffixPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
-            @"^" + First + Space + Initial + Space + Last + CommaSpace + Suffix + @"$",
-            CommonPatternRegexOptions);
+            @"^" + First + Space + LastHyphenated + Space + Suffix + @"$",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public ParsedFullName Parse(string rawName)
         {
@@ -16,11 +16,14 @@ namespace BinaryFog.NameParser.Patterns
             if (!match.Success) return null;
             var firstName = match.Groups["first"].Value;
             var middleName = $"{match.Groups["initial"]}";
-            var lastName = match.Groups["last"].Value;
+            var lastPart1 = match.Groups["last1"].Value;
+            var lastPart2 = match.Groups["last2"].Value;
+            var lastName = $"{lastPart1}-{lastPart2}";
 
             var scoreMod = 0;
             ModifyScoreExpectedFirstName(ref scoreMod, firstName);
-            ModifyScoreExpectedLastName(ref scoreMod, lastName);
+            ModifyScoreExpectedLastName(ref scoreMod, lastPart1);
+            ModifyScoreExpectedLastName(ref scoreMod, lastPart2);
 
             var pn = new ParsedFullName
             {
@@ -30,7 +33,7 @@ namespace BinaryFog.NameParser.Patterns
                 Suffix = match.Groups["suffix"].Value,
                 DisplayName = $"{firstName} {middleName} {lastName}",
                 Score = 100 + scoreMod,
-                Rule = nameof(FirstInitialLastCommaSuffixPattern)
+                Rule = nameof(FirstHyphenatedLastSuffixPattern)
             };
             return pn;
         }

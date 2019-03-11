@@ -15,7 +15,7 @@ namespace BinaryFog.NameParser.Patterns
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
             var firstName = match.Groups["first"].Value;
-            var middleName = $"{match.Groups["initial"]}.";
+            var middleName = $"{match.Groups["initial"]}";
             var prefix = match.Groups["prefix"].Value;
             var lastPart = match.Groups["last"].Value;
             var lastName = $"{prefix} {lastPart}";

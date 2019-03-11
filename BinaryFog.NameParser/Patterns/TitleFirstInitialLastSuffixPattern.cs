@@ -14,7 +14,7 @@ namespace BinaryFog.NameParser.Patterns {
 
             var title = match.Groups["title"].Value;
             var firstName = match.Groups["first"].Value;
-			var middleName = $"{match.Groups["initial"]}.";
+			var middleName = $"{match.Groups["initial"]}";
 			var lastName = match.Groups["last"].Value;
 
 			var scoreMod = 0;

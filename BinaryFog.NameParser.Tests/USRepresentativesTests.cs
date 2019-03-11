@@ -52,22 +52,5 @@ namespace BinaryFog.NameParser.Tests
             else
                 Assert.Equal(nickname, target.NickName);
         }
-
-        [Fact(Skip ="Pattern for nicknames with commas inside them needs to be added.")]
-        public void Parse_GeorgeButterfield()
-        {
-            var fullName = "Rep. George “G.K.” Butterfield";
-            var target = new FullNameParser(fullName);
-            target.Parse();
-
-            Assert.Equal("George", target.FirstName);
-            Assert.Equal("Butterfield", target.LastName);
-            Assert.Equal("George Butterfield", target.DisplayName);
-            Assert.Equal("Rep.", target.Title);
-            Assert.Equal("G.K.", target.NickName);
-        }
-
-
-
     }
 }

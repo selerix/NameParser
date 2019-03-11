@@ -7,7 +7,7 @@ namespace BinaryFog.NameParser.Patterns
     internal class FirstMiddleLastSuffixPattern : IFullNamePattern
     {
         private static readonly Regex Rx = new Regex(
-            @"^" + First + Space + Middle + Space + Last + Space + Suffix + @"$",
+            @"^" + First + Space + Middle + Space + Last + OptionalCommaSpace + Suffix + @"$",
             CommonPatternRegexOptions);
 
 
