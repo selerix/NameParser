@@ -643,5 +643,22 @@ namespace BinaryFog.NameParser.Tests
             Assert.Equal("III", suffixName);
         }
 
+        [Fact]
+        public void NameParser_TestFirstLastWithThreePartsLastCommaSuffix()
+        {
+            string fullname = "Agustin Ponce De Leon, II";
+            string firstName;
+            string middleName;
+            string lastName;
+            string suffixName;
+
+            bool ret = GetNameParts(fullname, out firstName, out lastName, out middleName, out suffixName);
+
+            Assert.True(ret);
+            Assert.Equal("Agustin", firstName);
+            Assert.Equal("Ponce De Leon", lastName);
+            Assert.Null(middleName);
+            Assert.Equal("II", suffixName);
+        }
     }
 }

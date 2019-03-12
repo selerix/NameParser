@@ -50,7 +50,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\BenefitAgent\src\key.pfx</AssemblyOriginatorKeyFile>
@@ -97,6 +97,7 @@
     <Compile Include="Patterns\FirstNickMiddleHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstNickMiddleLastPattern.cs" />
     <Compile Include="Patterns\FirstPrefixedLastSuffixPattern.cs" />
+    <Compile Include="Patterns\FirstTrippleLastSuffixPattern.cs" />
     <Compile Include="Patterns\FirstTwoInitialLastPattern.cs" />
     <Compile Include="Patterns\FirstTwoLastPattern.cs" />
     <Compile Include="Patterns\FirstTwoMiddleHyphenatedLastPattern.cs" />

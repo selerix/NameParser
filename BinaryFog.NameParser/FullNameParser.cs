@@ -47,6 +47,7 @@ namespace BinaryFog.NameParser
                 new Patterns.FirstHyphenatedLastSuffixPattern(),
                 new Patterns.FirstInitialDoubleLastPattern(),
                 new Patterns.FirstInitialTrippleLastPattern(),
+                new Patterns.FirstTrippleLastSuffixPattern(),
                 new Patterns.FirstInitialLastCommaSuffixPattern(),
                 new Patterns.FirstInitialLastPattern(),
                 new Patterns.FirstInitialLastSuffixPattern(),
