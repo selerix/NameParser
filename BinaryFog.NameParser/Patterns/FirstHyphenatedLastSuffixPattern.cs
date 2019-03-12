@@ -15,7 +15,6 @@ namespace BinaryFog.NameParser.Patterns
             var match = Rx.Match(rawName);
             if (!match.Success) return null;
             var firstName = match.Groups["first"].Value;
-            var middleName = $"{match.Groups["initial"]}";
             var lastPart1 = match.Groups["last1"].Value;
             var lastPart2 = match.Groups["last2"].Value;
             var lastName = $"{lastPart1}-{lastPart2}";
@@ -28,10 +27,9 @@ namespace BinaryFog.NameParser.Patterns
             var pn = new ParsedFullName
             {
                 FirstName = firstName,
-                MiddleName = middleName,
                 LastName = lastName,
                 Suffix = match.Groups["suffix"].Value,
-                DisplayName = $"{firstName} {middleName} {lastName}",
+                DisplayName = $"{firstName} {lastName}",
                 Score = 100 + scoreMod,
                 Rule = nameof(FirstHyphenatedLastSuffixPattern)
             };

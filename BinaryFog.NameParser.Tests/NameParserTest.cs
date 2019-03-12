@@ -56,11 +56,11 @@ namespace BinaryFog.NameParser.Tests
 
             bool ret = GetNameParts(fullname, out firstName, out lastName, out middleName, out suffixName);
 
-            Assert.Equal(false, ret);
-            Assert.Equal(firstName, null);
-            Assert.Equal(lastName, null);
-            Assert.Equal(middleName, null);
-            Assert.Equal(suffixName, null);
+            Assert.False(ret);
+            Assert.Null(firstName);
+            Assert.Null(lastName);
+            Assert.Null(middleName);
+            Assert.Null(suffixName);
         }
 
         [Fact]
@@ -76,9 +76,9 @@ namespace BinaryFog.NameParser.Tests
 
             Assert.True(ret);
             Assert.Equal("John", firstName);
-            Assert.Equal(lastName, "Doe");
-            Assert.Equal(middleName, null);
-            Assert.Equal(suffixName, null);
+            Assert.Equal("Doe", lastName);
+            Assert.Null(middleName);
+            Assert.Null(suffixName);
         }
 
         [Fact]
@@ -93,10 +93,10 @@ namespace BinaryFog.NameParser.Tests
             bool ret = GetNameParts(fullname, out firstName, out lastName, out middleName, out suffixName);
 
             Assert.True(ret);
-            Assert.Equal(firstName, "Michael");
-            Assert.Equal(lastName, "Crawford");
-            Assert.Equal(middleName, null);
-            Assert.Equal(suffixName, "III");
+            Assert.Equal("Michael", firstName);
+            Assert.Equal("Crawford", lastName);
+            Assert.Null(middleName);
+            Assert.Equal("III", suffixName);
         }
 
 
@@ -169,10 +169,10 @@ namespace BinaryFog.NameParser.Tests
             bool ret = GetNameParts(fullname, out firstName, out lastName, out middleName, out suffixName);
 
             Assert.True(ret);
-            Assert.Equal(firstName, "Mary");
-            Assert.Equal(lastName, "Watts");
-            Assert.Equal(middleName, "Catherine");
-            Assert.Equal(suffixName, null);
+            Assert.Equal("Mary", firstName);
+            Assert.Equal("Watts", lastName);
+            Assert.Equal("Catherine", middleName);
+            Assert.Null(suffixName);
         }
 
         [Fact]
