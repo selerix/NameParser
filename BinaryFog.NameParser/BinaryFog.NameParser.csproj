@@ -73,8 +73,6 @@
     <Compile Include="IFullNamePattern.cs" />
     <Compile Include="ParsedFullName.cs" />
     <Compile Include="Patterns\AfricanFirstLastPattern.cs" />
-    <Compile Include="Patterns\DoubleInitialsFirstLastPattern.cs" />
-    <Compile Include="Patterns\DoubleWordFirstLastPattern.cs" />
     <Compile Include="Patterns\FirstHyphenatedLastNickPattern.cs" />
     <Compile Include="Patterns\FirstHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstHyphenatedLastSuffixPattern.cs" />
@@ -111,10 +109,7 @@
     <Compile Include="Patterns\SingleNameOnlyPattern.cs" />
     <Compile Include="Patterns\TitleFirstDoubleWordHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\TitleDoubleWordHyphenatedFirstLastPattern.cs" />
-    <Compile Include="Patterns\DoubleWordHyphenatedFirstLastPattern.cs" />
-    <Compile Include="Patterns\FirstDoubleWordHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\TitleFirstDoubleWordLastPattern.cs" />
-    <Compile Include="Patterns\FirstDoubleWordLastPattern.cs" />
     <Compile Include="Patterns\FirstIrishLastPattern.cs" />
     <Compile Include="Patterns\FirstMiddleHyphenatedLastPattern.cs" />
     <Compile Include="Patterns\FirstNameJobTitlePattern.cs" />
@@ -149,7 +144,6 @@
     <None Include="ParsedName.cs" />
     <Compile Include="Patterns\CompanyPattern.cs" />
     <Compile Include="Patterns\FirstLastPattern.cs" />
-    <None Include="Patterns\FirstNameOnlyPattern.cs" />
     <Compile Include="Patterns\FirstPrefixedLastPattern.cs" />
     <Compile Include="Patterns\TitleFirstPrefixedLastPattern.cs" />
     <Compile Include="Patterns\TitleFirstNickLastPattern.cs" />
