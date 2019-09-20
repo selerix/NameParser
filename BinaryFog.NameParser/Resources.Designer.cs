@@ -19,7 +19,7 @@ namespace BinaryFog.NameParser {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,13 +63,21 @@ namespace BinaryFog.NameParser {
         /// <summary>
         ///   Looks up a localized string similar to co
         ///company
+        ///lt
         ///ltd
         ///llc
         ///limited
         ///inc
         ///incorporated
         ///corp
-        ///corporation.
+        ///corporation
+        ///service
+        ///services
+        ///laboratories
+        ///systems
+        ///enterprises
+        ///outfitters
+        ///holdings.
         /// </summary>
         internal static string CompanySuffixes {
             get {
@@ -266,6 +274,78 @@ namespace BinaryFog.NameParser {
         internal static string LastNamePrefixes {
             get {
                 return ResourceManager.GetString("LastNamePrefixes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMITH
+        ///JOHNSON
+        ///WILLIAMS
+        ///BROWN
+        ///JONES
+        ///MILLER
+        ///DAVIS
+        ///GARCIA
+        ///RODRIGUEZ
+        ///WILSON
+        ///MARTINEZ
+        ///ANDERSON
+        ///TAYLOR
+        ///THOMAS
+        ///HERNANDEZ
+        ///MOORE
+        ///MARTIN
+        ///JACKSON
+        ///THOMPSON
+        ///WHITE
+        ///LOPEZ
+        ///LEE
+        ///GONZALEZ
+        ///HARRIS
+        ///CLARK
+        ///LEWIS
+        ///ROBINSON
+        ///WALKER
+        ///PEREZ
+        ///HALL
+        ///YOUNG
+        ///ALLEN
+        ///SANCHEZ
+        ///WRIGHT
+        ///KING
+        ///SCOTT
+        ///GREEN
+        ///BAKER
+        ///ADAMS
+        ///NELSON
+        ///HILL
+        ///RAMIREZ
+        ///CAMPBELL
+        ///MITCHELL
+        ///ROBERTS
+        ///CARTER
+        ///PHILLIPS
+        ///EVANS
+        ///TURNER
+        ///TORRES
+        ///PARKER
+        ///COLLINS
+        ///EDWARDS
+        ///STEWART
+        ///FLORES
+        ///MORRIS
+        ///NGUYEN
+        ///MURPHY
+        ///RIVERA
+        ///COOK
+        ///ROGERS
+        ///MORGAN
+        ///PETERSON
+        ///CO [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LastNames {
+            get {
+                return ResourceManager.GetString("LastNames", resourceCulture);
             }
         }
         
@@ -476,7 +556,10 @@ namespace BinaryFog.NameParser {
         ///xix
         ///jr
         ///sr
-        ///esq.
+        ///esq
+        ///jr.
+        ///sr.
+        ///esq..
         /// </summary>
         internal static string Suffixes {
             get {
@@ -504,83 +587,20 @@ namespace BinaryFog.NameParser {
         ///lady
         ///hon
         ///honorable
-        ///right hon.
+        ///right hon
+        ///fr
+        ///rev
+        ///revd
+        ///cpt
+        ///lt
+        ///sgt
+        ///sen
+        ///rep
+        ///commish.
         /// </summary>
         internal static string Titles {
             get {
                 return ResourceManager.GetString("Titles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SMITH
-        ///JOHNSON
-        ///WILLIAMS
-        ///BROWN
-        ///JONES
-        ///MILLER
-        ///DAVIS
-        ///GARCIA
-        ///RODRIGUEZ
-        ///WILSON
-        ///MARTINEZ
-        ///ANDERSON
-        ///TAYLOR
-        ///THOMAS
-        ///HERNANDEZ
-        ///MOORE
-        ///MARTIN
-        ///JACKSON
-        ///THOMPSON
-        ///WHITE
-        ///LOPEZ
-        ///LEE
-        ///GONZALEZ
-        ///HARRIS
-        ///CLARK
-        ///LEWIS
-        ///ROBINSON
-        ///WALKER
-        ///PEREZ
-        ///HALL
-        ///YOUNG
-        ///ALLEN
-        ///SANCHEZ
-        ///WRIGHT
-        ///KING
-        ///SCOTT
-        ///GREEN
-        ///BAKER
-        ///ADAMS
-        ///NELSON
-        ///HILL
-        ///RAMIREZ
-        ///CAMPBELL
-        ///MITCHELL
-        ///ROBERTS
-        ///CARTER
-        ///PHILLIPS
-        ///EVANS
-        ///TURNER
-        ///TORRES
-        ///PARKER
-        ///COLLINS
-        ///EDWARDS
-        ///STEWART
-        ///FLORES
-        ///MORRIS
-        ///NGUYEN
-        ///MURPHY
-        ///RIVERA
-        ///COOK
-        ///ROGERS
-        ///MORGAN
-        ///PETERSON
-        ///CO [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string USCensusLastNames {
-            get {
-                return ResourceManager.GetString("USCensusLastNames", resourceCulture);
             }
         }
     }
